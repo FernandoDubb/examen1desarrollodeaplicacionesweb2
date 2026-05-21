@@ -3,7 +3,6 @@
 import { useContext, useEffect } from "react";
 import { GastosContext } from "@/context/GastosContext";
 import { obtenerGastos } from "@/services/api";
-import { Gasto } from "@/context/GastosContext";
 
 export default function ListaGastos() {
   const context = useContext(GastosContext);
@@ -12,10 +11,12 @@ export default function ListaGastos() {
     if (!context) return;
     obtenerGastos().then((data) => {
       if (Array.isArray(data)) {
-        data.forEach((g: Gasto) => context.agregarGasto(g));
-      }
+        for (let i = 0; i < data.length; i++) {
+  context.agregarGasto(data[i]);
+    }
+  }
     });
-  }, []);
+  }, [context]);
 
   if (!context) return null;
 

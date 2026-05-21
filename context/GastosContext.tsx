@@ -25,13 +25,14 @@ export function GastosProvider({ children }: { children: ReactNode }) {
   const [gastos, setGastos] = useState<Gasto[]>([]);
 
   const agregarGasto = (gasto: Gasto) => {
-    setGastos((prev) => [...prev, gasto]);
-  };
+  const nuevaLista = [...gastos, gasto];
+  setGastos(nuevaLista);
+    };
 
   const eliminarGasto = (index: number) => {
-    setGastos((prev) => prev.filter((_, i) => i !== index));
-  };
-
+  const nuevaLista = gastos.filter((item, i) => i !== index);
+  setGastos(nuevaLista);
+    };
   const editarGasto = (index: number) => {
     const gasto = gastos[index];
     const nuevoMonto = prompt("Nuevo monto:", String(gasto.monto));
