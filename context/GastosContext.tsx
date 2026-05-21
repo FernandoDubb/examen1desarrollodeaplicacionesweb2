@@ -33,7 +33,6 @@ export function GastosProvider({ children }: { children: ReactNode }) {
   };
 
   const editarGasto = (index: number) => {
-    // Puedes expandir esto con un modal si el profe lo pide
     const gasto = gastos[index];
     const nuevoMonto = prompt("Nuevo monto:", String(gasto.monto));
     if (nuevoMonto !== null) {
